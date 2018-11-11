@@ -1,0 +1,30 @@
+<div id="login-wrapper" class="ui equal width center aligned padded grid">
+    <div class="column">
+        <div class="row" style="background-color:#2D4343">
+            <img src="assets/img/image_header.png"  class="ui fluid image rowLogin">
+        </div>
+        <div class="row" style="background-color:#2D4343;padding-bottom: 220px;">
+            <div class="ui large form rowLogin">
+                <div class="ui stacked segment">
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input type="text" name="email" placeholder="Votre nom" [(ngModel)]="user.name">
+                        </div>
+                    </div>
+                    <div (click)="onConnect()" class="ui fluid large teal submit button">Commencer une partie</div>
+                    <div *ngIf="error != ''" class="ui negative message">
+                        <i class="close icon"></i>
+                        <div class="header">
+                            Une erreur est survenue
+                        </div>
+                        <p>{{error}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="background-color:#2E7097;height: 200px;">
+             <img src="assets/img/coveo.png"  class="ui fluid image rowLogin" style="width:250px">
+        </div>
+    </div>
+</div>

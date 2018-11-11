@@ -1,16 +1,18 @@
 {
     "extends": "../tslint.json",
     "rules": {
+        "member-access": true,
+        "typedef": [true, "call-signature", "parameter", "member-variable-declaration"], 
         "directive-selector": [
             true,
             "attribute",
-            "app",
+            "whisper",
             "camelCase"
         ],
         "component-selector": [
             true,
             "element",
-            "app",
+            "whisper",
             "kebab-case"
         ]
     }

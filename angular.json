@@ -7,7 +7,7 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app",
+      "prefix": "whisper",
       "schematics": {},
       "architect": {
         "build": {
@@ -23,9 +23,12 @@
               "src/assets"
             ],
             "styles": [
+              "semantic/dist/semantic.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "semantic/dist/semantic.min.js"
+            ]
           },
           "configurations": {
             "production": {

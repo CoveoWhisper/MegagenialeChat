@@ -1,0 +1,13 @@
+#wrapper {
+    width:100%;
+    height: 100%
+}
+
+#left-section {
+    width: 60%;
+    float:left;
+}
+
+#right-section {
+    float: right;
+}

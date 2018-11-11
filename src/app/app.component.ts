@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'whisper-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'whisper-megagenial';
-}
+export class AppComponent {}
