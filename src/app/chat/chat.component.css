@@ -1,0 +1,39 @@
+.user {
+    font-size: 42px;
+}
+
+.ui.comments {
+    max-width: 100%;
+    width:100%;
+    font-size: 20px;
+}
+
+.fullWidth {
+    width:100%;
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+}
+
+.comment {
+    border-bottom: 1.5px solid #EEE!important;
+}
+
+#searchBar {
+    width:60%;
+    padding-left: 1%;
+    border: 0;
+    background: #EFF1F4;
+}
+
+#searchBar input {
+    border: 1px solid #999; 
+}
+
+#chat-wrapper {
+    padding:4%;
+}
+
+.content {
+    border-radius: 8px;
+    padding: 9px 15px;
+}

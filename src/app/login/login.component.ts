@@ -25,7 +25,17 @@ export class LoginComponent implements OnInit {
             this.error = 'Veuillez entrer un nom';
             return;
         }  
+        this.user.avatar = this.randomColorStyle();
         this.loginService.connect(this.user);
         this.router.navigate(['/']);
+    }
+
+    private randomColorStyle(): any {
+        const letters: string = '0123456789ABCDEF';
+        let color: string = '#';
+        for (let i = 0; i < 6; ++i) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return { 'color' : color };
     }
 }

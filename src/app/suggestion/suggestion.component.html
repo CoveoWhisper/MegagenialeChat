@@ -1,36 +1,17 @@
+<h1>{{ message }}</h1>
 <div class="ui items">
-    <div class="item">
-        <div class="image">
-        <img src="/images/wireframe/image.png">
-        </div>
+    <div class="item" *ngFor="let document of suggestion.documents">
         <div class="content">
-        <a class="header">Header</a>
+        <a class="header">{{ document.title }}</a>
         <div class="meta">
             <span>Description</span>
         </div>
         <div class="description">
-            <p></p>
+            <p>{{ document.excerpt }}</p>
         </div>
         <div class="extra">
-            Additional Details
+            {{ document.uri }}
         </div>
         </div>
     </div>
-    <div class="item">
-        <div class="image">
-        <img src="/images/wireframe/image.png">
-        </div>
-        <div class="content">
-        <a class="header">Header</a>
-        <div class="meta">
-            <span>Description</span>
-        </div>
-        <div class="description">
-            <p></p>
-        </div>
-        <div class="extra">
-            Additional Details
-        </div>
-        </div>
-    </div>
-    </div>
+</div>
