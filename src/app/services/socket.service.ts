@@ -3,10 +3,10 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { Message } from '../models/message';
 import { Event } from '../models/event';
-
+import { environment } from '../../environments/environment';
 import * as socketIo from 'socket.io-client';
 
-const SERVER_URL = 'https://whisper-megagenial.us-east-1.elasticbeanstalk.com:8080';
+const SERVER_URL = environment.SOCKET_ENDPOINT;
 
 @Injectable()
 export class SocketService {

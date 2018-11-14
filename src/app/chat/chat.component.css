@@ -15,14 +15,14 @@
 }
 
 .comment {
-    border-bottom: 1.5px solid #EEE!important;
+    border-bottom: 1.5px solid #EEE !important;
 }
 
 #searchBar {
     width:60%;
     padding-left: 1%;
     border: 0;
-    background: #EFF1F4;
+    background-color: #EFF1F4;
 }
 
 #searchBar input {

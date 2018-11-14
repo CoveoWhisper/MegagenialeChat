@@ -1,6 +1,6 @@
 import { LoginService } from './../services/login.service';
 import { Message } from './../models/message';
-import { Component, OnInit,  AfterViewChecked, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit,  AfterViewChecked, Output, EventEmitter, Input } from '@angular/core';
 import { SocketService } from './../services/socket.service';
 import { User } from '../models/user';
 
@@ -11,7 +11,7 @@ import { User } from '../models/user';
 })
 export class ChatComponent implements OnInit, AfterViewChecked  {
     public messages: any = new Array<Message>();
-    public messageContent: string;
+    @Input() public messageContent: string;
     public color: any;
     @Output() public messageSentEvent: EventEmitter<string> = new EventEmitter();
     private _userConnected: User;
@@ -25,11 +25,12 @@ export class ChatComponent implements OnInit, AfterViewChecked  {
         this._userConnected = this.loginService.getCurrentUser();
         this.messages = this.loginService.getOldMessages();
         this.socketService.onMessage()
-        .subscribe((message: Message) => {
-            this.messages.push(message);
-            this.loginService.saveMessages(message); 
-            this._isNewMessage = true;
-        });
+            .subscribe((message: Message) => {
+                this.messages.push(message);
+                this.loginService.saveMessages(message); 
+                this.messageSentEvent.emit(message.content);
+                this._isNewMessage = true;
+            });
     }
 
     public ngAfterViewChecked(): void {
@@ -50,7 +51,6 @@ export class ChatComponent implements OnInit, AfterViewChecked  {
           content: this.messageContent,
           date: new Date()
         });
-        this.messageSentEvent.emit(this.messageContent);
         this.messageContent = null;
     }
 

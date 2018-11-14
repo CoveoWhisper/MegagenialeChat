@@ -17,26 +17,26 @@ export class LoginService {
     }
 
     public connect(user: User): void {
-        localStorage.setItem(this.localUser, JSON.stringify(user));
+        sessionStorage.setItem(this.localUser, JSON.stringify(user));
     }
 
     public disconnect(): void {
-        localStorage.removeItem(this.localUser);
-        localStorage.removeItem(this.localMessages);
+        sessionStorage.removeItem(this.localUser);
+        sessionStorage.removeItem(this.localMessages);
     }
 
     public getCurrentUser(): User {
-        return JSON.parse(localStorage.getItem(this.localUser));
+        return JSON.parse(sessionStorage.getItem(this.localUser));
     }
 
     public saveMessages(message: Message): void {
         const messages: Array<Message> = this.getOldMessages();
         messages.push(message);
-        localStorage.setItem(this.localMessages, JSON.stringify(messages));
+        sessionStorage.setItem(this.localMessages, JSON.stringify(messages));
     }
 
     public getOldMessages(): Array<Message> {
-        const messagesStored: any = localStorage.getItem(this.localMessages);
+        const messagesStored: any = sessionStorage.getItem(this.localMessages);
         if (messagesStored)
             return JSON.parse(messagesStored);
 

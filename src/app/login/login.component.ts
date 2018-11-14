@@ -9,8 +9,8 @@ import { User } from '../models/user';
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-    private user: User;
-    private error: string;
+    public user: User;
+    public error: string;
 
     constructor(private loginService: LoginService, private router: Router) {
         this.user = new User();

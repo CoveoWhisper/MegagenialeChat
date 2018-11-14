@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Suggestion } from '../models/suggestion';
@@ -21,20 +22,29 @@ export class SuggestionService {
     public getSuggestion(chatKey: Guid): Observable<{} | Suggestion> {
         const parameters = '?chatkey=' + chatKey.value + '&maxDocuments=5&maxQuestions=3';
         return this.http.get<Suggestion>(`${ENDPOINT}/suggestions/${parameters}`)
-            .pipe(tap(data => alert(JSON.stringify(data))) , catchError(this.errorHandler));
+            .pipe(catchError(this.errorHandler));
     }
 
     public getSuggestionWithQuery(query: string, chatKey: Guid): Observable<{} | Suggestion> {
         const data = {
             chatkey: chatKey.value,
             Query: query,
-            type: 0,
+            type: environment.userType,
             maxDocuments: 5,
             maxQuestions: 3
         };
         return this.http.post<Suggestion>(ENDPOINT + '/suggestions', data, httpOptions)
-            .pipe(tap(res => alert(JSON.stringify(res))), catchError(this.errorHandler));
+            .pipe(catchError(this.errorHandler));
     }
+
+    public selectSuggestion(chatkey: Guid, id: Guid): Observable<{}> {
+        const data = {
+            chatkey,
+            id
+        };
+        return this.http.post(ENDPOINT + '/suggestions/select', data, httpOptions)
+            .pipe(catchError(this.errorHandler));
+    } 
 
     public errorHandler(error: HttpErrorResponse): any {
         return throwError(error.message || 'Erreur de serveur');

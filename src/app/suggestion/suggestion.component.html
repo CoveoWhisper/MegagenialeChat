@@ -1,6 +1,15 @@
-<h1>{{ message }}</h1>
+<div class="ui items" *ngIf="suggestion.questions && suggestion.questions.length > 0">
+    <span class="header">Vous pouvez demander</span>
+    <div class="item" (click)="choiceQuestion(question)" *ngFor="let question of suggestion.questions">
+        <div class="content">
+            <div class="description">
+                <p>{{ question.text }}</p>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="ui items">
-    <div class="item" *ngFor="let document of suggestion.documents">
+    <div class="item" (click)="choiceSuggestion(document)" *ngFor="let document of suggestion.documents">
         <div class="content">
         <a class="header">{{ document.title }}</a>
         <div class="meta">
