@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Message } from './../models/message';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
@@ -9,7 +10,7 @@ export class LoginService {
     private localUser: string = 'user';
     private localMessages: string = 'messages';
 
-    public constructor() {}
+    public constructor( private router: Router) {}
 
     public isConnected(): boolean {
         if (this.getCurrentUser()) return true;
@@ -23,6 +24,7 @@ export class LoginService {
     public disconnect(): void {
         sessionStorage.removeItem(this.localUser);
         sessionStorage.removeItem(this.localMessages);
+        this.router.navigate(['/login']);
     }
 
     public getCurrentUser(): User {

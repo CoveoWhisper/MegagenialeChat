@@ -1,3 +1,4 @@
+import { LoginService } from './login.service';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
@@ -6,18 +7,19 @@ import { Guid } from 'guid-typescript';
 import { throwError,  Observable } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 
-const ENDPOINT: string = 'https://whisper-dev.us-east-1.elasticbeanstalk.com/whisper';
+const ENDPOINT: string = 'https://whisper-megagenial.us-east-1.elasticbeanstalk.com/whisper';
+// const ENDPOINT: string = 'https://localhost:5001';
+
 const httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization': 'my-auth-token'
+      'Content-Type':  'application/json'
     })
 };
 @Injectable({
     providedIn: 'root'
 })
 export class SuggestionService {
-    public constructor(private http: HttpClient) {}
+    public constructor(private http: HttpClient, private loginService: LoginService) {}
 
     public getSuggestion(chatKey: Guid): Observable<{} | Suggestion> {
         const parameters = '?chatkey=' + chatKey.value + '&maxDocuments=5&maxQuestions=3';
@@ -29,7 +31,7 @@ export class SuggestionService {
         const data = {
             chatkey: chatKey.value,
             Query: query,
-            type: environment.userType,
+            type: this.loginService.getCurrentUser().userType,
             maxDocuments: 5,
             maxQuestions: 3
         };
@@ -48,5 +50,10 @@ export class SuggestionService {
 
     public errorHandler(error: HttpErrorResponse): any {
         return throwError(error.message || 'Erreur de serveur');
+    }
+
+    public cancelQuestion(facetId: Guid): Observable<{}> {
+        return this.http.delete(`${ENDPOINT}/facets/${facetId || ''}`, httpOptions)
+            .pipe(catchError(this.errorHandler));
     }
 }

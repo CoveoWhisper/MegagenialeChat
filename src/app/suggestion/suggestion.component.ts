@@ -5,7 +5,9 @@ import { LoginService } from './../services/login.service';
 import { Suggestion, Document, QuestionToClient } from './../models/suggestion';
 import { SuggestionService } from './../services/suggestion.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 import { User } from '../models/user';
+
 
 @Component({
     selector: 'whisper-suggestion',
@@ -17,9 +19,11 @@ export class SuggestionComponent implements OnInit {
     @Input() public suggestion: Suggestion;
     @Output() public suggestionClickEvent: EventEmitter<string> = new EventEmitter(); 
 
+    public selectedDocument: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl('about:blank');
     constructor(
         private suggestionService: SuggestionService,
-        private loginService: LoginService
+        private loginService: LoginService,
+        private sanitizer: DomSanitizer
     ) {
     }
 
@@ -27,15 +31,34 @@ export class SuggestionComponent implements OnInit {
         this._userLogged = this.loginService.getCurrentUser();     
     }
 
-    public choiceSuggestion(document: Document, chatKey: Guid): void {
-        const agentInput = document.title + ' ' + document.uri;
-        this.suggestionService.selectSuggestion(chatKey, document.id.value);
-        this.suggestionClickEvent.emit(agentInput);
+    public choiceSuggestion(document: Document): void {
+        this.selectedDocument = this.sanitizer.bypassSecurityTrustResourceUrl(document.uri);
+        $('#suggestion')
+            .transition({
+                animation  : 'scale',
+                duration   : '300ms',
+                onComplete : () => {
+                    $('#documentWrapper').transition('scale');
+                }
+            })
+        ;
     }
 
     public choiceQuestion(question: QuestionToClient, chatKey: Guid): void {
         this.suggestionService.selectSuggestion(chatKey, question.id.value);
         this.suggestionClickEvent.emit(question.text);
+    }
+
+    public closeDocument(): void {
+        $('#documentWrapper')
+            .transition({
+                animation  : 'scale',
+                duration   : '300ms',
+                onComplete : () => {
+                    $('#suggestion').transition('scale');
+                }
+            })
+        ;
     }
 }
 

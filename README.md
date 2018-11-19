@@ -1,27 +1,15 @@
 # WhisperMegagenial
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.4.
+User interface for megageniale
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve -c agent` for a dev server as an agent. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `ng serve -c user --port=4201` for a dev server as an yser. Navigate to `http://localhost:4201/`. The app will automatically reload if you change any of the source files.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build -c agent --output-path=dist/agent --base-href "/whisperui/agent/"` to build the project as agent.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Run `ng build -c user --output-path=dist/user --base-href "/whisperui/user/"` to build the project as user.

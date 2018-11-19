@@ -9,10 +9,10 @@
                     <div class="field">
                         <div class="ui left icon input">
                             <i class="user icon"></i>
-                            <input type="text" name="email" placeholder="Votre nom" [(ngModel)]="user.name">
+                            <input type="text" (keyup.enter)="onConnect()" name="email" placeholder="Votre nom" [(ngModel)]="user.name">
                         </div>
                     </div>
-                    <div (click)="onConnect()" class="ui fluid large teal submit button">Commencer une partie</div>
+                    <div (click)="onConnect()"  class="ui fluid large teal submit button">Commencer une partie</div>
                     <div *ngIf="error != ''" class="ui negative message">
                         <i class="close icon"></i>
                         <div class="header">

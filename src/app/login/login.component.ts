@@ -1,8 +1,8 @@
+import { environment } from './../../environments/environment';
 import { Router } from '@angular/router';
 import { LoginService } from './../services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
-
 @Component({
     selector: 'whisper-login',
     templateUrl: './login.component.html',
@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
             return;
         }  
         this.user.avatar = this.randomColorStyle();
+        this.user.userType = environment.userType;
         this.loginService.connect(this.user);
         this.router.navigate(['/']);
     }

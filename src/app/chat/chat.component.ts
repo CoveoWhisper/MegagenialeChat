@@ -35,7 +35,7 @@ export class ChatComponent implements OnInit, AfterViewChecked  {
 
     public ngAfterViewChecked(): void {
         if (this._isNewMessage) {
-            const wrapper: HTMLElement = document.getElementById('wrapper');
+            const wrapper: HTMLElement = document.getElementById('chat-wrapper');
             wrapper.scrollTo(0, wrapper.scrollHeight);
             this._isNewMessage = false;
         }

@@ -15,11 +15,11 @@
 }
 
 .comment {
-    border-bottom: 1.5px solid #EEE !important;
+    border-bottom: 1.5px solid #DDD !important;
 }
 
 #searchBar {
-    width:60%;
+    width:49%;
     padding-left: 1%;
     border: 0;
     background-color: #EFF1F4;
@@ -31,6 +31,8 @@
 
 #chat-wrapper {
     padding:4%;
+    overflow-y: scroll;
+    height: 95vh;
 }
 
 .content {
